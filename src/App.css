@@ -1,0 +1,32 @@
+/* Layout */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Editor styles */
+.collaborative-editor {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 200px;
+  max-width: 400px;
+  overflow: auto;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.collaborative-editor:focus-within {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.1);
+}
+
+/* Error states */
+.error {
+  color: #ff4444;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(255, 68, 68, 0.1);
+}
+

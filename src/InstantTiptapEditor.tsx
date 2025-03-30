@@ -71,7 +71,7 @@ export default function InstantTiptapEditor({ docId, debounceMs = 300 }: Instant
     // while the client ID system prevents changes from being applied back to their
     // originating editor, avoiding infinite loops.
     onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
+      const json = safeGetEditorContent(editor);
       // Debounce writes to DB
       if (saveTimer.current) {
         clearTimeout(saveTimer.current);

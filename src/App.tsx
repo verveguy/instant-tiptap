@@ -1,31 +1,30 @@
 // App.jsx
-import CollaborativeEditor from './InstantTiptapEditor';
-import { id } from './config';
-import { updateDoc, useQueryAllDocIds } from './database';
+import CollaborativeEditor from "./InstantTiptapEditor";
+import { id } from "./config";
+import { updateDoc, useQueryAllDocIds } from "./database";
 
 /**
  * Main App Component
- * 
+ *
  * This component serves as the primary interface for the collaborative editor demo.
  * It showcases real-time collaboration features by:
- * 
+ *
  * 1. Loading/initializing multiple document instances
  * 2. Rendering multiple editor instances that can:
  *    - Share the same document (Editors 1 & 2 -> doc1) demonstrating real-time collaboration
  *    - Use different documents (Editor 3 -> doc2) showing document isolation
- * 
+ *
  * The component handles:
  * - Document initialization with default content if no documents exist
  * - Loading states and error handling for document fetching
  * - Layout of multiple editor instances
- * 
+ *
  * Uses:
  * - CollaborativeEditor component for rich text editing
  * - Database hooks for document management
  */
 
 export default function App() {
-
   const { data, isLoading, error } = useQueryAllDocIds();
 
   if (isLoading) return <div>Loading...</div>;
@@ -41,30 +40,26 @@ export default function App() {
     // For demonstration, we set initial content to something
     doc1 = updateDoc(id(), {
       content: {
-        type: 'doc',
-        content: [
-          { type: 'paragraph', content: [{ type: 'text', text: 'Hello from doc-1!' }] },
-        ],
+        type: "doc",
+        content: [{ type: "paragraph", content: [{ type: "text", text: "Hello from doc-1!" }] }],
         // ... Tiptap JSON structure
       },
-      updatedBy: 'server-init',
+      updatedBy: "server-init",
       updatedAt: new Date().toISOString(),
     });
 
     doc2 = updateDoc(id(), {
       content: {
-        type: 'doc',
-        content: [
-          { type: 'paragraph', content: [{ type: 'text', text: 'Welcome to doc-2' }] },
-        ],
+        type: "doc",
+        content: [{ type: "paragraph", content: [{ type: "text", text: "Welcome to doc-2" }] }],
       },
-      updatedBy: 'server-init',
+      updatedBy: "server-init",
       updatedAt: new Date().toISOString(),
     });
   }
 
   return (
-    <div style={{ display: 'flex', gap: '2rem' }}>
+    <div style={{ display: "flex", gap: "2rem" }}>
       <div>
         <h1>Editor 1 (doc-1)</h1>
         <CollaborativeEditor docId={doc1} />

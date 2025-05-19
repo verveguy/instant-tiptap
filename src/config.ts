@@ -1,4 +1,4 @@
-import { init, id, tx } from "@instantdb/react";
+import { id, init, tx } from "@instantdb/react";
 import schema from "../instant.schema";
 
 export const isDev = import.meta.env.DEV;
@@ -13,22 +13,24 @@ if (!APP_ID) {
 }
 
 // which instantdb mode are we in?
-const client_db_config = database_mode === "local" ? {
-  appId: APP_ID,
-  // use local instantdb server layer
-  apiURI: "http://localhost:8888",
-  websocketURI: "ws://localhost:8888/runtime/session",
-  devtool: false,
-  schema: schema
-} : {
-  appId: APP_ID,
-  devtool: false,
-  schema: schema
-};
+const client_db_config =
+  database_mode === "local"
+    ? {
+        appId: APP_ID,
+        // use local instantdb server layer
+        apiURI: "http://localhost:8888",
+        websocketURI: "ws://localhost:8888/runtime/session",
+        devtool: false,
+        schema: schema,
+      }
+    : {
+        appId: APP_ID,
+        devtool: false,
+        schema: schema,
+      };
 
 console.log("client_db_config", client_db_config);
 
 export const db = init(client_db_config);
 
-export { id };
-export { tx };
+export { id, tx };

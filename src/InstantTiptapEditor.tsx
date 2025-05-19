@@ -1,23 +1,22 @@
-import { useEffect, useRef } from 'react';
-import { useEditor, EditorContent, Editor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import { useQueryDoc, updateDoc } from './database';
-import { v4 as uuidv4 } from 'uuid';
-
+import { Editor, EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import { useEffect, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
+import { updateDoc, useQueryDoc } from "./database";
 
 /**
  * InstantTiptapEditor - A collaborative rich text editor component using Tiptap
- * 
+ *
  * This component provides real-time collaborative editing functionality by:
  * 1. Connecting to a shared document in InstantDB using a unique docId
  * 2. Initializing a Tiptap editor instance with basic text editing features
  * 3. Syncing local changes to the database with debouncing
  * 4. Applying remote changes from other users in real-time
- * 
+ *
  * The editor uses a client ID system to handle conflict resolution between
- * multiple simultaneous editors, and implements debouncing to prevent 
+ * multiple simultaneous editors, and implements debouncing to prevent
  * excessive database writes.
- * 
+ *
  * Key features:
  * - Real-time collaboration between multiple users
  * - Debounced saves to reduce database load
@@ -42,11 +41,10 @@ export default function InstantTiptapEditor({ docId, debounceMs = 300 }: Instant
 
   // Initialize Tiptap editor
   const editor = useEditor({
-    
     // See Tiptap docs https://tiptap.dev/docs/examples/advanced/react-performance
     shouldRerenderOnTransaction: false,
 
-    // Configure the editor with basic text editing features, including undo/redo 
+    // Configure the editor with basic text editing features, including undo/redo
     // using the standard history extension
     extensions: [
       StarterKit.configure({
@@ -55,7 +53,7 @@ export default function InstantTiptapEditor({ docId, debounceMs = 300 }: Instant
         },
       }),
     ],
-    content: '',
+    content: "",
 
     // The onUpdate handler is called whenever the editor content changes locally.
     // It implements our collaborative editing strategy by:
@@ -100,10 +98,7 @@ export default function InstantTiptapEditor({ docId, debounceMs = 300 }: Instant
       return;
     }
     // If new content is the same as the last we sent, skip
-    if (
-      docData.updatedBy === clientIdRef.current &&
-      JSON.stringify(newContent) === JSON.stringify(lastSent)
-    ) {
+    if (docData.updatedBy === clientIdRef.current && JSON.stringify(newContent) === JSON.stringify(lastSent)) {
       return;
     }
 

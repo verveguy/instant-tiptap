@@ -39,19 +39,23 @@ The project uses Vite for development and supports both local and hosted Instant
 ### Available Scripts
 
 #### Development Server
+
 - `pnpm dev` - Start development server with hot reload
 
 #### InstantDB Local Development Mode
+
 - `pnpm local` - Set up local environment configuration
 - `pnpm pulllocal` - Pull database schema in local mode
 - `pnpm pushlocal` - Push database schema in local mode
 
 #### InstantDB Hosted Mode
+
 - `pnpm hosted` - Set up hosted environment configuration
 - `pnpm pullhosted` - Pull database schema from hosted environment
 - `pnpm pushhosted` - Push database schema to hosted environment
 
 #### Authentication
+
 - `pnpm instant-login` - Log in to InstantDB
 
 ### Environment Setup
@@ -59,6 +63,7 @@ The project uses Vite for development and supports both local and hosted Instant
 The project supports two deployment modes:
 
 1. **Local Mode**
+
    - Uses a local InstantDB server
    - Set up using `pnpm local`
    - Server runs at `http://localhost:8888`
@@ -70,6 +75,7 @@ The project supports two deployment modes:
 Both require valid InstantDB App ID in the respective InstantDB context.
 
 Env switching is handled with a symbolic link
+
 1. Copy `env.template.hosted` to `.off.env.local` and `.off.env.hosted`
 2. Set `VITE_INSTANT_MODE` to `local` or `hosted` appropriately
 3. Set `VITE_INSTANT_APP_ID` to your InstantDB App ID local or hosted
@@ -84,7 +90,6 @@ Local:
 Hosted:
 `pnpm run pushhosted`
 `pnpm run pullhosted`
-
 
 ## Project Structure
 

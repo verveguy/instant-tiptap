@@ -11,8 +11,8 @@
     "hosted": "ln -sf .off.env.hosted .env && echo 'HOSTED environment activated'",
     "pullhosted": "pnpm hosted && pnpm instant-cli pull -y",
     "pushhosted": "pnpm hosted && pnpm instant-cli push -y",
-    "instant-login-local": "INSTANT_CLI_DEV=1 pnpm instant-cli login",
-    "instant-login": "pnpm instant-cli login"
+    "login": "pnpm local && INSTANT_CLI_DEV=1 pnpm instant-cli login",
+    "login:hosted": "pnpm hosted && pnpm instant-cli login"
   },
   "dependencies": {
     "@instantdb/react": "^0.19.7",

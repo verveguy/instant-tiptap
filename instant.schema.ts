@@ -8,16 +8,16 @@ const _schema = i.schema({
   // run `push schema` again to enforce the types.
   entities: {
     $files: i.entity({
-      path: i.string().unique().indexed(),
-      url: i.string(),
+      path: i.string().unique().indexed().optional(),
+      url: i.string().optional(),
     }),
     $users: i.entity({
-      email: i.string().unique().indexed(),
+      email: i.string().unique().indexed().optional(),
     }),
     documents: i.entity({
-      content: i.json(),
-      updatedAt: i.date().indexed(),
-      updatedBy: i.string().indexed(),
+      content: i.json().optional(),
+      updatedAt: i.date().indexed().optional(),
+      updatedBy: i.string().indexed().optional(),
     }),
   },
   links: {},
